@@ -5,3 +5,5 @@
 /fs/clip-corpora/cord19
 
 https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge/tasks
+
+https://github.com/josephsdavid/cord-19-tools
