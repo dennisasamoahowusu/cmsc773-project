@@ -10,6 +10,7 @@ https://github.com/josephsdavid/cord-19-tools
 
 https://monkeylearn.com/blog/introduction-to-topic-modeling/
 
+https://towardsdatascience.com/topic-modeling-and-latent-dirichlet-allocation-in-python-9bf156893c24
 
 ## Setup
 
