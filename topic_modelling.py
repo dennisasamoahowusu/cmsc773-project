@@ -43,9 +43,9 @@ df_orig = pd.read_csv('./metadata.csv')
 
 
 # Import IR results
-df_ir = pd.read_csv('.galago_data/results_bm25_2000', delimiter=' ', \
-                    header=None, usecols=[1,3,4,5,6], \
-                    names=['task','cord_uid','rank','num','galago'])
+df_ir = pd.read_csv('./galago_data/results_bm25_2000.csv', delimiter=' ', \
+                    header=None, \
+                    names=['task', 'q', 'cord_uid','rank','num','galago'])
 # # Filter the dataset only according to IR results
 # merged_df = pd.merge(df_orig, df_ir, how='outer')
 # merged_df = merged_df[merged_df['galago'] == 'galago']
