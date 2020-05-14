@@ -46,22 +46,13 @@ df_orig = pd.read_csv('./metadata.csv')
 df_ir = pd.read_csv('./galago_data/results_bm25_2000.csv', delimiter=' ', \
                     header=None, \
                     names=['task', 'q', 'cord_uid','rank','num','galago'])
-# # Filter the dataset only according to IR results
-# merged_df = pd.merge(df_orig, df_ir, how='outer')
-# merged_df = merged_df[merged_df['galago'] == 'galago']
-
-
-# # Filter the df per topic
-# def extract_topic_df(merged_dataset, num):
-#     topic_df = merged_dataset[merged_dataset['task']=='T-' + str(num)].reset_index()
-#     topic_df = topic_df[['title', 'abstract']]
-#     return topic_df
 
 
 # Filter the df per topic
 def extract_topic_df(num, query_df=df_ir, metadata=df_orig):
     topic_df_ir = query_df[query_df['task']=='T-' + str(num)].reset_index()
-    topic_df_meta = pd.merge(metadata, topic_df_ir, on='cord_uid')
+    topic_df_meta = metadata[metadata['cord_uid'].isin(topic_df_ir.loc[:,'cord_uid'])].reset_index()
+    # topic_df_meta = pd.merge(metadata, topic_df_ir, on='cord_uid')
     topic_df_filtered = topic_df_meta[['title', 'abstract']]
     return topic_df_filtered
 
