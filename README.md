@@ -12,6 +12,8 @@ https://monkeylearn.com/blog/introduction-to-topic-modeling/
 
 https://towardsdatascience.com/topic-modeling-and-latent-dirichlet-allocation-in-python-9bf156893c24
 
+https://www.machinelearningplus.com/nlp/topic-modeling-visualization-how-to-present-results-lda-models/
+
 ## Setup
 
 virtualenv -p python3 .venv
