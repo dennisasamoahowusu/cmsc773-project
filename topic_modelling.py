@@ -1,25 +1,22 @@
 # dependencies: spacy, gensim
 # do: !python3 -m spacy download en
 
-import sys
 # !{sys.executable} -m spacy download en
-import re, numpy as np, pandas as pd
-from pprint import pprint
+import pandas as pd
+import re
 
 # Gensim
-import gensim, spacy, logging, warnings
+import gensim
 import gensim.corpora as corpora
-from gensim.utils import lemmatize, simple_preprocess
-from gensim.models import CoherenceModel
-import matplotlib.pyplot as plt
+from gensim import models
+import logging
+import warnings
 from nltk.tokenize import RegexpTokenizer
-from nltk.tokenize import word_tokenize
+from pprint import pprint
+
 tokenizer = RegexpTokenizer(r'\w+')
-import string
 
 # Plot data
-import pyLDAvis
-import pyLDAvis.gensim
 
 # NLTK Stop words
 from nltk.corpus import stopwords
@@ -168,8 +165,38 @@ def format_further(df_topic_sents_keywords):
 
     return sent_topics_sorteddf_mallet
 
+
+def get_tfidf_corpus(bow_corpus):
+    """
+
+    :return: corpus and dictionary to pass to lda_model
+    """
+    tfidf = models.TfidfModel(bow_corpus)
+    corpus_tfidf = tfidf[bow_corpus]
+    return corpus_tfidf
+
+
+def do_topic_modelling(corpus, output_dir, task):
+    lda_model = make_lda(corpus, id2word)
+
+    df_topic_sents_keywords = format_topics_sentences(ldamodel=lda_model, corpus=corpus, texts=data_ready)
+
+    sent_topics_sorteddf_mallet = format_further(df_topic_sents_keywords)
+
+    filepath = output_dir + '/topics_task_' + str(task) + '.csv'
+
+    sent_topics_sorteddf_mallet.to_csv(filepath, index=False)
+
+    # PLOTTING
+    # import pyLDAvis.gensim
+    # pyLDAvis.enable_notebook()
+
+    # vis = pyLDAvis.gensim.prepare(lda_model, corpus, dictionary=lda_model.id2word)
+    # pyLDAvis.show(vis)
+
+
 for task in range(len(df_ir['task'].unique())):
-    topic_df = extract_topic_df(task+1)
+    topic_df = extract_topic_df(task + 1)
     data_words = df2list(topic_df.astype(str))
 
     data_ready = process_words(data_words)  # processed Text Data!
@@ -177,17 +204,63 @@ for task in range(len(df_ir['task'].unique())):
     id2word = corpora.Dictionary(data_ready)
     # Create Corpus: Term Document Frequency
     corpus = [id2word.doc2bow(text) for text in data_ready]
+    corpus_tfidf = get_tfidf_corpus(corpus)
 
-    lda_model = make_lda(corpus, id2word)
+    do_topic_modelling(corpus, "./outputs", task)
+    do_topic_modelling(corpus_tfidf, "./tfidf_outputs", task)
 
-    df_topic_sents_keywords = format_topics_sentences(ldamodel=lda_model, corpus=corpus, texts=data_ready)
 
-    sent_topics_sorteddf_mallet = format_further(df_topic_sents_keywords)
 
-    sent_topics_sorteddf_mallet.to_csv('./outputs/topics_task_' + str(task) + '.csv', index=False)
+# print(merged_df.info())
+# print(merged_df.shape)
+# print()
+# print(df_ir.info())
+# print(df_ir.shape)
+# print(df_ir.tail(20))
+
+# merged_df contains the subset of the data that is contained in the IR results
+
+# for task in range(len(df_ir['task'].unique())):
+#
+#     # topic_df is df for articles for a particular task
+#     topic_df = extract_topic_df(merged_df, task+1)
+#     print(topic_df.head(1))
+#
+#     # data_words is a list of the words comprising the title and abstract for each row in the df
+#     data_words = df2list(topic_df.astype(str))
+#     pprint(data_words[:2])
+#
+#     # data_ready is data_words processed - length can be different because stop words are removed and some words
+#     # are joined into n-grams
+#     data_ready = process_words(data_words)  # processed Text Data!
+#     print()
+#     print("Data Ready: ")
+#     pprint(data_ready[:2])
+#
+#     # Create Dictionary
+#     id2word = corpora.Dictionary(data_ready)
+#     print(type(id2word))
+#
+#     # Create Corpus: Term Document Frequency
+#     corpus = [id2word.doc2bow(text) for text in data_ready]
+#     pprint(corpus[:2])
+#
+#     lda_model = make_lda(corpus, id2word)
+#
+#     df_topic_sents_keywords = format_topics_sentences(ldamodel=lda_model, corpus=corpus, texts=data_ready)
+#     print(df_topic_sents_keywords.head())
+#     print(df_topic_sents_keywords.info())
+#
+#     sent_topics_sorteddf_mallet = format_further(df_topic_sents_keywords)
+#     print(sent_topics_sorteddf_mallet.head())
+#     print(sent_topics_sorteddf_mallet.info())
+#
+#     sent_topics_sorteddf_mallet.to_csv('./outputs/topics_task_' + str(task) + '.csv', index=False)
+
+
     # PLOTTING
     # import pyLDAvis.gensim
     # pyLDAvis.enable_notebook()
-    
+    #
     # vis = pyLDAvis.gensim.prepare(lda_model, corpus, dictionary=lda_model.id2word)
     # pyLDAvis.show(vis)
