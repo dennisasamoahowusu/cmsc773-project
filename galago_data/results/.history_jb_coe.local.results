@@ -1,0 +1,7 @@
+2020 May 14 Thu 23:47:38 EDT test4 /exp/jbremerman/cmsc773-project/galago_data/results  1091  cd results/
+2020 May 14 Thu 23:47:39 EDT test4 /exp/jbremerman/cmsc773-project/galago_data/results  1092  ls
+2020 May 14 Thu 23:47:55 EDT test4 /exp/jbremerman/cmsc773-project/galago_data/results  1093  mv results_bm25_2000.csv ../
+2020 May 14 Thu 23:47:56 EDT test4 /exp/jbremerman/cmsc773-project/galago_data/results  1094  ls
+2020 May 14 Thu 23:58:41 EDT test4 /exp/jbremerman/cmsc773-project/galago_data/results  1014  cd results/
+2020 May 14 Thu 23:58:42 EDT test4 /exp/jbremerman/cmsc773-project/galago_data/results  1015  ls
+2020 May 15 Fri 00:02:00 EDT test4 /exp/jbremerman/cmsc773-project/galago_data/results  1016  less results_bm25_10000 
