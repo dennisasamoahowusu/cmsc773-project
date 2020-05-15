@@ -1,1 +1,7 @@
 requests
+spacy
+gensim
+nltk
+pandas
+matplotlib
+pyLDAvis
