@@ -1,0 +1,6 @@
+Topic_Num,Topic_Perc_Contrib,Keywords,Representative Text
+0.0,0.9153000116348267,"vaccinated, group, study, patients, n, 2009, dose, levels, 10, measured","['séance', 'bi', 'académique', 'de_l', 'académie', 'nationale', 'de', 'médecine', 'et', 'de_l', 'académie', 'des', 'sciences', 'confiance', 'et', 'défiance', 'vis', 'à', 'vis', 'des', 'vaccins']"
+1.0,0.9233999848365784,"disease, used, model, models, sars, animal, emerging, high, research, therapeutic","['assessing', 'mobile_phone', 'data', 'describe', 'recurrent', 'mobility', 'patterns', 'spatial', 'epidemic', 'models']"
+2.0,0.9190999865531921,"virus, human, viral, immune, viruses, dna, responses, cells, animals, sars_cov","['ace2', 'orthologues', 'non', 'mammalian', 'vertebrates', 'danio', 'gallus', 'fugu', 'tetraodon', 'xenopus']"
+3.0,0.9210000038146973,"vaccine, vaccines, development, abstract, infection, vaccination, influenza, potential, response, new","['running', 'gauntlet', 'formidable', 'challenges', 'advancing', 'neglected_tropical', 'diseases', 'vaccines', 'development', 'licensure', 'call', 'action']"
+4.0,0.9107000231742859,"protein, proteins, design, based, analysis, novel, epitopes, first, interactions, peptide","['protein', 'microarray', 'using', 'α', 'amino_acids', 'metal', 'tags', 'chips']"

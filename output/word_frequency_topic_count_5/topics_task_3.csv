@@ -1,0 +1,6 @@
+Topic_Num,Topic_Perc_Contrib,Keywords,Representative Text
+0.0,0.8673999905586243,"data, study, farms, evidence, used, calves, pedv, respiratory, associated, farm","['coinfections', 'hospitalized', 'children', 'community_acquired_pneumonia', 'mean', 'clinician']"
+1.0,0.9107999801635742,"disease, pathogens, animals, diseases, animal, infectious, emerging, transmission, infections, abstract","['london', '2012', 'olympic', 'paralympic', 'games', 'public_health', 'surveillance', 'epidemiology']"
+2.0,0.9175999760627747,"role, potential, cell, review, abstract, vaccines, proteins, cells, pathogens, chapter","['possible', 'roles', 'monocytes_macrophages', 'response', 'elephant', 'endotheliotropic', 'herpesvirus', 'eehv', 'infections', 'asian_elephants', 'elephas', 'maximus']"
+3.0,0.9405999779701233,"host, virus, viruses, viral, human, coronavirus, coronaviruses, infection, species, bats","['kanyawara', 'virus', 'novel', 'rhabdovirus', 'infecting', 'newly_discovered', 'nycteribiid', 'bat', 'flies', 'infesting', 'previously', 'unknown', 'pteropodid', 'bats', 'uganda']"
+4.0,0.9419000148773193,"health, factors, based, research, understanding, specific, human, farmers, first, systems","['peut', 'concrètement', 'définir', 'la', 'notion', 'de', 'barrière', 'espèce', 'à', 'la', 'diffusion', 'des', 'pathogènes']"
