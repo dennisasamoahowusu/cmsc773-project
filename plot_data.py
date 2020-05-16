@@ -102,8 +102,8 @@ def plot_cluster_chart(lda_model, corpus):
     plot = figure(title="t-SNE Clustering of {} LDA Topics".format(n_topics), 
                 plot_width=900, plot_height=700)
     plot.scatter(x=tsne_lda[:,0], y=tsne_lda[:,1], color=mycolors[topic_num])
-    save(plot, filename='./figures/cluster_charts/task_'+str(task)+'.html',\
-                title='Task '+str(task))
+    # save(plot, filename='./figures/cluster_charts/task_'+str(task)+'.html',\
+    #             title='Task '+str(task))
     export_png(plot, filename='./figures/cluster_charts/task_'+str(task)+'.png')
 
 
