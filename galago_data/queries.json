@@ -1,4 +1,4 @@
-{"queries": [{"text": "#bm25( What is known about transmission, incubation, and environmental stability? What do we know about natural history, transmission, and diagnostics for the virus? What have we learned about infection prevention and control?
+{"queries": [{"text": "#stopword(#combine( What is known about transmission, incubation, and environmental stability? What do we know about natural history, transmission, and diagnostics for the virus? What have we learned about infection prevention and control?
 
     Range of incubation periods for the disease in humans (and how this varies across age and health status) and how long individuals are contagious, even after recovery.
     Prevalence of asymptomatic shedding and transmission (e.g., particularly children).
@@ -14,7 +14,7 @@
     Effectiveness of movement control strategies to prevent secondary transmission in health care and community settings
     Effectiveness of personal protective equipment (PPE) and its usefulness to reduce risk of transmission in health care and community settings
     Role of the environment in transmission
-)", "number" : "T-1"},{"text": "#bm25(What do we know about COVID-19 risk factors? What have we learned from epidemiological studies?
+))", "number" : "T-1"},{"text": "#combine(What do we know about COVID-19 risk factors? What have we learned from epidemiological studies?
 
     Data on potential risks factors
         Smoking, pre-existing pulmonary disease
@@ -25,7 +25,7 @@
     Severity of disease, including risk of fatality among symptomatic hospitalized patients, and high-risk patient groups
     Susceptibility of populations
     Public health mitigation measures that could be effective for control
-)", "number" : "T-2"},{"text": "#bm25(What do we know about vaccines and therapeutics? What has been published concerning research and development and evaluation efforts of vaccines and therapeutics?
+)", "number" : "T-2"},{"text": "#stopword(#combine(What do we know about vaccines and therapeutics? What has been published concerning research and development and evaluation efforts of vaccines and therapeutics?
 
     Effectiveness of drugs being developed and tried to treat COVID-19 patients.
         Clinical and bench trials to investigate less common viral inhibitors against COVID-19 such as naproxen, clarithromycin, and minocyclinethat that may exert effects on viral replication.
@@ -38,7 +38,7 @@
     Efforts to develop prophylaxis clinical studies and prioritize in healthcare workers
     Approaches to evaluate risk for enhanced disease after vaccination
     Assays to evaluate vaccine immune response and process development for vaccines, alongside suitable animal models [in conjunction with therapeutics]
-)", "number" : "T-3"},{"text": "#bm25(What do we know about virus genetics, origin, and evolution? What do we know about the virus origin and management measures at the human-animal interface?
+))", "number" : "T-3"},{"text": "#stopword(#combine(What do we know about virus genetics, origin, and evolution? What do we know about the virus origin and management measures at the human-animal interface?
 
     Real-time tracking of whole genomes and a mechanism for coordinating the rapid dissemination of that information to inform the development of diagnostics and therapeutics and to track variations of the virus over time.
     Access to geographic and temporal diverse sample sets to understand geographic distribution and genomic differences, and determine whether there is more than one strain in circulation. Multi-lateral agreements such as the Nagoya Protocol could be leveraged.
@@ -49,7 +49,7 @@
     Animal host(s) and any evidence of continued spill-over to humans
     Socioeconomic and behavioral risk factors for this spill-over
     Sustainable risk reduction strategies
-)", "number" : "T-4"},{"text": "#bm25(What do we know about the effectiveness of non-pharmaceutical interventions? What is known about equity and barriers to compliance for non-pharmaceutical interventions?
+))", "number" : "T-4"},{"text": "#stopword(#combine(What do we know about the effectiveness of non-pharmaceutical interventions? What is known about equity and barriers to compliance for non-pharmaceutical interventions?
 
     Guidance on ways to scale up NPIs in a more coordinated way (e.g., establish funding, infrastructure and authorities to support real time, authoritative (qualified participants) collaboration with all states to gain consensus on consistent guidance and to mobilize resources to geographic areas where critical shortfalls are identified) to give us time to enhance our health care delivery system capacity to respond to an increase in cases.
     Rapid design and execution of experiments to examine and compare NPIs currently being implemented. DHS Centers for Excellence could potentially be leveraged to conduct these experiments.
@@ -59,7 +59,7 @@
     Policy changes necessary to enable the compliance of individuals with limited resources and the underserved with NPIs.
     Research on why people fail to comply with public health advice, even if they want to do so (e.g., social or financial costs may be too high).
     Research on the economic impact of this or any pandemic. This would include identifying policy and programmatic alternatives that lessen/mitigate risks to critical government services, food distribution and supplies, access to critical household supplies, and access to health diagnoses, treatment, and needed care, regardless of ability to pay.
-)", "number" : "T-5"},{"text": "#bm25(What has been published concerning ethical considerations for research? What has been published concerning social sciences at the outbreak response?
+))", "number" : "T-5"},{"text": "#stopword(#combine(What has been published concerning ethical considerations for research? What has been published concerning social sciences at the outbreak response?
 
     Efforts to articulate and translate existing ethical principles and standards to salient issues in COVID-2019
     Efforts to embed ethics across all thematic areas, engage with novel ethical issues that arise and coordinate to minimize duplication of oversight
@@ -68,7 +68,7 @@
     Efforts to develop qualitative assessment frameworks to systematically collect information related to local barriers and enablers for the uptake and adherence to public health measures for prevention and control. This includes the rapid identification of the secondary impacts of these measures. (e.g. use of surgical masks, modification of health seeking behaviors for SRH, school closures)
     Efforts to identify how the burden of responding to the outbreak and implementing public health measures affects the physical and psychological health of those providing care for Covid-19 patients and identify the immediate needs that must be addressed.
     Efforts to identify the underlying drivers of fear, anxiety and stigma that fuel misinformation and rumor, particularly through social media.
-)", "number" : "T-6"},{"text": "#bm25(What has been published about medical care? What has been published concerning surge capacity and nursing homes? What has been published concerning efforts to inform allocation of scarce resources? What do we know about personal protective equipment? What has been published concerning alternative methods to advise on disease management? What has been published concerning processes of care? What do we know about the clinical characterization and management of the virus?
+))", "number" : "T-6"},{"text": "#stopword(#combine(What has been published about medical care? What has been published concerning surge capacity and nursing homes? What has been published concerning efforts to inform allocation of scarce resources? What do we know about personal protective equipment? What has been published concerning alternative methods to advise on disease management? What has been published concerning processes of care? What do we know about the clinical characterization and management of the virus?
 
     Resources to support skilled nursing facilities and long term care facilities.
     Mobilization of surge medical staff to address shortages in overwhelmed communities
@@ -86,7 +86,7 @@
     Efforts to define the natural history of disease to inform clinical care, public health interventions, infection prevention control, transmission, and clinical trials
     Efforts to develop a core clinical outcome set to maximize usability of data across a range of trials
     Efforts to determine adjunctive and supportive interventions that can improve the clinical outcomes of infected patients (e.g. steroids, high flow oxygen)
-)", "number" : "T-7"},{"text": "#bm25(What do we know about diagnostics and surveillance? What has been published concerning systematic, holistic approach to diagnostics (from the public health surveillance perspective to being able to predict clinical outcomes)?
+))", "number" : "T-7"},{"text": "#stopword(#combine(What do we know about diagnostics and surveillance? What has been published concerning systematic, holistic approach to diagnostics (from the public health surveillance perspective to being able to predict clinical outcomes)?
 
     How widespread current exposure is to be able to make immediate policy recommendations on mitigation measures. Denominators for testing and a mechanism for rapidly sharing that information, including demographics, to the extent possible. Sampling methods to determine asymptomatic disease (e.g., use of serosurveys (such as convalescent samples) and early detection of disease (e.g., use of screening of neutralizing antibodies such as ELISAs).
     Efforts to increase capacity on existing diagnostic platforms and tap into existing surveillance platforms.
@@ -107,7 +107,7 @@
     Enhance capabilities for rapid sequencing and bioinformatics to target regions of the genome that will allow specificity for a particular variant.
     Enhance capacity (people, technology, data) for sequencing with advanced analytics for unknown pathogens, and explore capabilities for distinguishing naturally-occurring pathogens from intentional.
     One Health surveillance of humans and potential sources of future spillover or ongoing exposure for this organism and future pathogens, including both evolutionary hosts (e.g., bats) and transmission hosts (e.g., heavily trafficked and farmed wildlife and domestic food and companion species), inclusive of environmental, demographic, and occupational risk factors.
-)", "number" : "T-8"}, {"text": "#bm25(What has been published about information sharing and inter-sectoral collaboration? What has been published about data standards and nomenclature? What has been published about governmental public health? What do we know about risk communication? What has been published about communicating with high-risk populations? What has been published to clarify community measures? What has been published about equity considerations and problems of inequity?
+))", "number" : "T-8"}, {"text": "#stopword(#combine(What has been published about information sharing and inter-sectoral collaboration? What has been published about data standards and nomenclature? What has been published about governmental public health? What do we know about risk communication? What has been published about communicating with high-risk populations? What has been published to clarify community measures? What has been published about equity considerations and problems of inequity?
 
     Methods for coordinating data-gathering with standardized nomenclature.
     Sharing response information among planners, providers, and others.
@@ -124,4 +124,4 @@
     Data systems and research priorities and agendas incorporate attention to the needs and circumstances of disadvantaged populations and underrepresented minorities.
     Mitigating threats to incarcerated people from COVID-19, assuring access to information, prevention, diagnosis, and treatment.
     Understanding coverage policies (barriers and opportunities) related to testing, treatment, and care
-)", "number" : "T-9"}]}
+))", "number" : "T-9"}]}
