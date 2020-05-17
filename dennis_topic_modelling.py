@@ -15,6 +15,7 @@ import logging
 import warnings
 from nltk.tokenize import RegexpTokenizer
 from pprint import pprint
+import matplotlib.pyplot as plt
 
 tokenizer = RegexpTokenizer(r'\w+')
 
@@ -217,12 +218,15 @@ def calculate_cv(model, data, id2word):
 
 
 if __name__ == "__main__":
-    topic_counts = [4, 5]
+    topic_counts = [3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100]
     output_dir = "./output"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    for topic_count in topic_counts:
-        for task in range(len(df_ir['task'].unique())):
+
+    for task in range(1, len(df_ir['task'].unique())):
+        reg_coherences = []
+        tfidf_coherences = []
+        for topic_count in topic_counts:
             topic_df = extract_topic_df(task + 1)
             data_words = df2list(topic_df.astype(str))
 
@@ -236,21 +240,41 @@ if __name__ == "__main__":
             lda_model = make_lda(corpus, id2word, topic_count)
             tfidf_model = make_lda(corpus_tfidf, id2word, topic_count)
 
-            sub_output_dir = output_dir + "/word_frequency_topic_count_" + str(topic_count)
-            if not os.path.exists(sub_output_dir):
-                os.makedirs(sub_output_dir)
-            do_topic_modelling(corpus, sub_output_dir, task, topic_count, lda_model)
+            # sub_output_dir = output_dir + "/word_frequency_topic_count_" + str(topic_count)
+            # if not os.path.exists(sub_output_dir):
+            #     os.makedirs(sub_output_dir)
+            # do_topic_modelling(corpus, sub_output_dir, task, topic_count, lda_model)
 
-            tfidf_sub_output_dir = output_dir + "/tf_idf_topic_count_" + str(topic_count)
-            if not os.path.exists(tfidf_sub_output_dir):
-                os.makedirs(tfidf_sub_output_dir)
-            do_topic_modelling(corpus_tfidf, tfidf_sub_output_dir, task, topic_count, tfidf_model)
+            # tfidf_sub_output_dir = output_dir + "/tf_idf_topic_count_" + str(topic_count)
+            # if not os.path.exists(tfidf_sub_output_dir):
+            #     os.makedirs(tfidf_sub_output_dir)
+            # do_topic_modelling(corpus_tfidf, tfidf_sub_output_dir, task, topic_count, tfidf_model)
+
+            reg_coherence = calculate_cv(lda_model, data_ready, id2word)
+            tfidf_coherence = calculate_cv(tfidf_model, data_ready, id2word)
+
+            reg_coherences.append(reg_coherence)
+            tfidf_coherences.append(tfidf_coherence)
 
             print("Number of Topics: ", topic_count)
             print("Task ", task)
-            print('LDA Coherence: ', calculate_cv(lda_model, data_ready, id2word))
-            print('TFIDF Coherence: ', calculate_cv(tfidf_model, data_ready, id2word))
+            print('LDA Coherence: ', reg_coherence)
+            print('TFIDF Coherence: ', tfidf_coherence)
             print()
+
+        plt.plot(topic_counts, reg_coherences)
+        plt.title("Regular Coherence")
+        plt.xlabel("Number of Topics")
+        plt.ylabel("Coherence")
+        plt.savefig('./figures/coherence_regular_task' + str(task) + '.png')
+        plt.close()
+
+        plt.plot(topic_counts, tfidf_coherences)
+        plt.title("tfidf Coherence")
+        plt.xlabel("Number of Topics")
+        plt.ylabel("Coherence")
+        plt.savefig('./figures/coherence_tfidf_task' + str(task) + '.png')
+        plt.close()
 
 
 
