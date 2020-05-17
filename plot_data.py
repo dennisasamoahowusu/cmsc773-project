@@ -13,6 +13,7 @@ import gensim
 from matplotlib import pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.colors as mcolors
+from palettable.tableau import Tableau_20
 
 # PLOT - TOP TOPICS PER DOC
 from matplotlib.ticker import FuncFormatter
@@ -27,16 +28,16 @@ from bokeh.io import export_png, save
 NUM_DOCS = sys.argv[1]
 
 
-if not os.path.exists('./figures/cluster_charts/' + str(NUM_DOCS)):
-    os.mkdir('./figures/cluster_charts/' + str(NUM_DOCS)) 
-if not os.path.exists('./figures/wordclouds/' + str(NUM_DOCS)):
-    os.mkdir('./figures/wordclouds/' + str(NUM_DOCS)) 
-if not os.path.exists('./figures/num_docs/' + str(NUM_DOCS)):
-    os.mkdir('./figures/num_docs/' + str(NUM_DOCS)) 
+if not os.path.exists('./outputs_final/figures/cluster_charts/' + str(NUM_DOCS)):
+    os.mkdir('./outputs_final/figures/cluster_charts/' + str(NUM_DOCS)) 
+if not os.path.exists('./outputs_final/figures/wordclouds/' + str(NUM_DOCS)):
+    os.mkdir('./outputs_final/figures/wordclouds/' + str(NUM_DOCS)) 
+if not os.path.exists('./outputs_final/figures/num_docs/' + str(NUM_DOCS)):
+    os.mkdir('./outputs_final/figures/num_docs/' + str(NUM_DOCS)) 
 
 
 def load_lda_model(task_num, name=NUM_DOCS):
-    model_path = "./lda_models/" + "lda_models_" + NUM_DOCS + "/lda_model_"+str(task_num)
+    model_path = "./outputs_final/lda_models_tfidf/lda_model_"+str(task_num)
     lda_model = gensim.models.ldamodel.LdaModel.load(model_path)
     return lda_model
 
@@ -72,14 +73,14 @@ def wordcloud_plotting(lda_model):
     plt.axis('off')
     plt.margins(x=0, y=0)
     plt.tight_layout()
-    plt.savefig('./figures/wordclouds/' + NUM_DOCS + '/task_'+str(task)+'.jpg')
+    plt.savefig('./outputs_final/figures/wordclouds/' + NUM_DOCS + '/task_'+str(task)+'.jpg')
 
 
 #############################
 # CLUSTERING CHART PLOTTING #
 #############################
 
-def plot_cluster_chart(lda_model, corpus):
+def plot_cluster_chart(lda_model, corpus, NUM):
     # Get topic weights
     topic_weights = []
     for i, row_list in enumerate(lda_model[corpus]):
@@ -99,14 +100,16 @@ def plot_cluster_chart(lda_model, corpus):
     tsne_lda = tsne_model.fit_transform(arr)
 
     # Plot the Topic Clusters using Bokeh
-    n_topics = 4
-    mycolors = np.array([color for name, color in mcolors.TABLEAU_COLORS.items()])
+    n_topics = NUM
+    # mycolors = np.array([color for name, color in mcolors.TABLEAU_COLORS.items()])
+    mycolors = np.array(Tableau_20.hex_colors)
+    
     plot = figure(title="t-SNE Clustering of {} LDA Topics".format(n_topics), 
                 plot_width=900, plot_height=700)
     plot.scatter(x=tsne_lda[:,0], y=tsne_lda[:,1], color=mycolors[topic_num])
     # save(plot, filename='./figures/cluster_charts/task_'+str(task)+'.html',\
     #             title='Task '+str(task))
-    export_png(plot, filename='./figures/cluster_charts/' + NUM_DOCS + '/task_'+str(task)+'.png')
+    export_png(plot, filename='./outputs_final/figures/cluster_charts/' + NUM_DOCS + '/task_'+str(task)+'.png')
 
 
 # Sentence Coloring of N Sentences
@@ -172,16 +175,20 @@ def plot_topics_documents(lda_model, corpus):
     ax2.xaxis.set_major_formatter(tick_formatter)
     ax2.set_title('Number of Documents by Topic Weightage', fontdict=dict(size=10))
 
-    plt.savefig('./figures/num_docs/' + NUM_DOCS + '/task_'+str(task)+'.jpg')
+    plt.savefig('./outputs_final/figures/num_docs/' + NUM_DOCS + '/task_'+str(task)+'.jpg')
 
 
-for task in range(9):
-    with open('./lda_models/lda_models_' + NUM_DOCS + '/corpus_'+str(task)+'.pickle',"rb") as f:
+for task in range(2):
+    with open('./outputs_final/lda_models_tfidf/corpus_'+str(task+1)+'.pickle',"rb") as f:
         corpus = pickle.load(f)
-        lda_model = load_lda_model(task)
+        lda_model = load_lda_model(task+1)
         # plot wordcloud for this task
-        wordcloud_plotting(lda_model)
+        # wordcloud_plotting(lda_model)
         # plot cluster chart
-        plot_cluster_chart(lda_model, corpus)
+        if task == 0:
+            num_topics = 15
+        if task == 1:
+            num_topics = 10
+        # plot_cluster_chart(lda_model, corpus, num_topics)
         # plot top N topics and number of documents
         plot_topics_documents(lda_model, corpus)
