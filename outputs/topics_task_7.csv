@@ -1,5 +1,0 @@
-Topic_Num,Topic_Perc_Contrib,Keywords,Representative Text
-0.0,0.944599986076355,"health, information, control, public, outbreak, data, disease, recommendations, global, policy","['uses', 'disorder', 'negotiated', 'information', 'orders', 'information', 'leveraging', 'changing', 'norms', 'global', 'public', 'health', 'governance']"
-1.0,0.9204999804496765,"disease, abstract, treatment, new, current, possible, infections, diseases, infectious, development","['chain', 'multinomial', 'model', 'estimating', 'real_time', 'fatality_rate', 'disease', 'application', 'severe_acute_respiratory_syndrome']"
-2.0,0.9519000053405762,"virus, viruses, viral, samples, detection, methods, rapid, host, method, rna","['single', 'tube', 'single', 'enzyme', 'reverse_transcriptase', 'pcr', 'assay', 'detection', 'bovine', 'viral', 'diarrhea', 'virus', 'pooled', 'bovine', 'serum']"
-3.0,0.9375,"study, patients, respiratory, infection, exposure, patient, hospitals, test, coronavirus, mers_cov","['association', 'semi_quantitative', 'microbial_load', 'respiratory', 'symptoms', 'among', 'thai', 'military', 'recruits', 'prospective', 'cohort', 'study']"
