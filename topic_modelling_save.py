@@ -17,9 +17,11 @@ from nltk.tokenize import RegexpTokenizer
 tokenizer = RegexpTokenizer(r'\w+')
 import string
 
+IR_RESULTS = sys.argv[1]
 
-if not os.path.exists('./lda_models'):
-    os.mkdir('./lda_models') 
+name = IR_RESULTS.split('.')[1].split('/')[-1].split('_')[-1]
+if not os.path.exists('./lda_models/lda_models_' + name):
+    os.mkdir('./lda_models/lda_models_' + name) 
 
 # NLTK Stop words
 from nltk.corpus import stopwords
@@ -31,7 +33,9 @@ stop_words.extend(['from', 'subject', 're', 'edu', 'use', 'not', 'would', \
                     'make', 'want', 'seem', 'run', 'need', 'even', 'right', \
                     'line', 'even', 'also', 'may', 'take', 'come', 'introduction',\
                     'methodology', 'discussion', 'results', 'discussion', \
-                    'conclusion', 'background', '0','1', '2', '3', '4', '5', '6', '7', '8', '9'])
+                    'conclusion', 'background', '0','1', '2', '3', '4', '5', '6', '7', '8', '9',\
+                    'virus', 'viral', 'disease', 'viruses', 'infection', \
+                    'infectious', 'health', 'vaccine'])
 
 # matplotlib inline
 import matplotlib.colors as mcolors
@@ -43,7 +47,7 @@ df_orig = pd.read_csv('./metadata.csv')
 
 
 # Import IR results
-df_ir = pd.read_csv('./galago_data/results_bm25_2000.csv', delimiter=' ', \
+df_ir = pd.read_csv(IR_RESULTS, delimiter=' ', \
                     header=None, \
                     names=['task', 'q', 'cord_uid','rank','num','galago'])
 
@@ -90,11 +94,6 @@ def process_words(texts, stop_words=stop_words):
     texts = [[word for word in doc if word not in stop_words] for doc in texts]
     texts = [bigram_mod[doc] for doc in texts]
     texts = [trigram_mod[bigram_mod[doc]] for doc in texts]
-    texts_out = []
-    nlp = spacy.load('en', disable=['parser', 'ner'])
-    for sent in texts:
-        doc = nlp(" ".join(sent)) 
-        texts_out.append([token.lemma_ for token in doc])
     # remove stopwords once more after lemmatization
     texts_out = [[word for word in doc if word not in stop_words] for doc in texts]   
     return texts_out
@@ -183,10 +182,10 @@ for task in range(len(df_ir['task'].unique())):
     sent_topics_sorteddf_mallet = format_further(df_topic_sents_keywords)
 
     # save results
-    sent_topics_sorteddf_mallet.to_csv('./outputs/topics_task_' + str(task) + '.csv', index=False)
-    lda_file = "./lda_models/lda_model_"+str(task)
+    sent_topics_sorteddf_mallet.to_csv('./outputs/' + name + '/topics_task_' + str(task) + '.csv', index=False)
+    lda_file = "./lda_models/lda_models_" + name + "/lda_model_"+str(task)
     lda_model.save(lda_file)
 
-    with open('./lda_models/corpus_'+str(task)+'.pickle','wb') as f:
+    with open('./lda_models/lda_models_' + name + '/corpus_'+str(task)+'.pickle','wb') as f:
         pickle.dump(corpus,f)
     

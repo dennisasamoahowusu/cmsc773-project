@@ -24,17 +24,19 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.models import Label
 from bokeh.io import export_png, save
 
-
-if not os.path.exists('./figures/cluster_charts'):
-    os.mkdir('./figures/cluster_charts') 
-if not os.path.exists('./figures/wordclouds'):
-    os.mkdir('./figures/wordclouds') 
-if not os.path.exists('./figures/num_docs'):
-    os.mkdir('./figures/num_docs') 
+NUM_DOCS = sys.argv[1]
 
 
-def load_lda_model(task_num):
-    model_path = "./lda_models/lda_model_"+str(task_num)
+if not os.path.exists('./figures/cluster_charts/' + str(NUM_DOCS)):
+    os.mkdir('./figures/cluster_charts/' + str(NUM_DOCS)) 
+if not os.path.exists('./figures/wordclouds/' + str(NUM_DOCS)):
+    os.mkdir('./figures/wordclouds/' + str(NUM_DOCS)) 
+if not os.path.exists('./figures/num_docs/' + str(NUM_DOCS)):
+    os.mkdir('./figures/num_docs/' + str(NUM_DOCS)) 
+
+
+def load_lda_model(task_num, name=NUM_DOCS):
+    model_path = "./lda_models/" + "lda_models_" + NUM_DOCS + "/lda_model_"+str(task_num)
     lda_model = gensim.models.ldamodel.LdaModel.load(model_path)
     return lda_model
 
@@ -70,7 +72,7 @@ def wordcloud_plotting(lda_model):
     plt.axis('off')
     plt.margins(x=0, y=0)
     plt.tight_layout()
-    plt.savefig('./figures/wordclouds/task_'+str(task)+'.jpg')
+    plt.savefig('./figures/wordclouds/' + NUM_DOCS + '/task_'+str(task)+'.jpg')
 
 
 #############################
@@ -104,7 +106,7 @@ def plot_cluster_chart(lda_model, corpus):
     plot.scatter(x=tsne_lda[:,0], y=tsne_lda[:,1], color=mycolors[topic_num])
     # save(plot, filename='./figures/cluster_charts/task_'+str(task)+'.html',\
     #             title='Task '+str(task))
-    export_png(plot, filename='./figures/cluster_charts/task_'+str(task)+'.png')
+    export_png(plot, filename='./figures/cluster_charts/' + NUM_DOCS + '/task_'+str(task)+'.png')
 
 
 # Sentence Coloring of N Sentences
@@ -170,11 +172,11 @@ def plot_topics_documents(lda_model, corpus):
     ax2.xaxis.set_major_formatter(tick_formatter)
     ax2.set_title('Number of Documents by Topic Weightage', fontdict=dict(size=10))
 
-    plt.savefig('./figures/num_docs/task_'+str(task)+'.jpg')
+    plt.savefig('./figures/num_docs/' + NUM_DOCS + '/task_'+str(task)+'.jpg')
 
 
 for task in range(9):
-    with open('./lda_models/corpus_'+str(task)+'.pickle',"rb") as f:
+    with open('./lda_models/lda_models_' + NUM_DOCS + '/corpus_'+str(task)+'.pickle',"rb") as f:
         corpus = pickle.load(f)
         lda_model = load_lda_model(task)
         # plot wordcloud for this task
